@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>GENESIS Store</title>
+        <meta name="description" content="GENESIS Store!">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="/static/storefront.css">
+        <script src="/static/content/lottie.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script type="text/javascript">
+            var stripe = Stripe('pk_test_51GqoE2I5DR6ZUKEStqfcwyIqlpe5XqQqLvUKFm5FYodUAFNSO4vqQ5poXF1UgtvciBwGu3lUoi312aIxjeYYYx4000BA4kesnQ');
+            var elements = stripe.elements();
+        </script>
+    </head>
+    <body>
+        <div id="contain">
+            <nav-bar></nav-bar>
+            <prod-div></prod-div>
+            <cart-div class="hidden"></cart-div>
+            <checkout-div class="hidden"></checkout-div>
+        </div>
+        <script src="/static/storefront.js"></script>
+        <script src="/static/cdsign1.js"></script>
+        <script src="/static/cdsign2.js"></script>
+        <script src="/static/sizeselector.js"></script>
+        <script src="/static/loadcircle.js"></script>
+    </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "genesis",
+  "version": "1.0.0",
+  "description": "A store for event merchandise",
+  "main": "index.js",
+  "repository": "https://github.com/ideadesignmedia/genesis.git",
+  "author": "ideadesignmedia <samwagnermedia@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^5.9.21",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.4.10",
+    "stripe": "^8.68.0"
+  }
+}

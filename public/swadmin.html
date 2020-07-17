@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <style>
+            .hidden {
+                display: none;
+            }
+            .aoi {
+                max-width: 100%;
+                padding: 20px;
+                height: auto;
+                text-align: center;
+                word-break: break-all;
+            }
+            .iHold {
+                display: inline-flex;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="loginpage">
+            <form id="loginform">
+                <input type="text" id="identifier" name="identifier">
+                <input type="password" id="password" name="password">
+                <input type="submit">
+            </form>
+        </div>
+        <div id="contain" class="hidden">
+            <div id="navigation">
+                <div id="visitorcount"></div>
+                <div id="navbuts">
+                    <div id="allordersN" class="navi">ALL ORDERS</div>
+                    <div id="newordersN" class="nava">NEW ORDERS</div>
+                </div>
+            </div>
+            <div id="allorders" class="hidden"></div>
+            <div id="neworders"></div>
+        </div>
+        <script src="/static/js/swadmin.js"></script>
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', ()=>{
+                document.getElementById('loginform').addEventListener('submit', function(e){
+                    e.preventDefault()
+                    let that = new XMLHttpRequest()
+                    that.onerror = function(err){
+                        console.log(err)
+                        document.getElementById('loginpage').innerHTML = `<div id="failed">Please reload to the page to login again. ERROR: ${err}</div>`
+                    }
+                    that.onreadystatechange = function(){
+                        if (this.readyState === 4) {
+                            let News = JSON.parse(that.responseText)
+                            if (News.auth === true) {
+                                document.getElementById('loginpage').className = 'hidden'
+                                document.getElementById('contain').classList.remove('hidden')
+                                startAdmin()
+                            } else {
+                                document.getElementById('loginpage').innerHTML = `<div id="failed">Please reload to the page to login again. ERROR: ${JSON.stringify(News)}</div>`
+                            }
+                        }
+                    }
+                    let form = {
+                        identifier: this['identifier'].value,
+                        password: this['password'].value
+                    }
+                    that.open('POST', '/admin-login', true)
+                    that.setRequestHeader('Content-type', 'application/json')
+                    that.send(JSON.stringify(form))
+                })
+            })
+        </script>
+    </body>
+</html>
